@@ -1,0 +1,40 @@
+Index: src/main/java/course/hm/project/it/company/ProjectA.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package course.hm.project.it.company;public class ProjectA {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/course/hm/project/it/company/ProjectA.java b/src/main/java/course/hm/project/it/company/ProjectA.java
+--- a/src/main/java/course/hm/project/it/company/ProjectA.java	(revision e56e92e68101f558be56cb5669c4d5f4bb783dca)
++++ b/src/main/java/course/hm/project/it/company/ProjectA.java	(date 1698873047295)
+@@ -1,2 +1,28 @@
+-package course.hm.project.it.company;public class ProjectA {
++package course.hm.project.it.company;
++
++public class ProjectA {
++    private String projectName;
++    private Technologies technologies;
++
++    public String getProjectName() {
++        return projectName;
++    }
++
++    public Technologies getTechnologies() {
++        return technologies;
++    }
++
++
++    public ProjectA(String projectName, Technologies technologies) {
++        this.projectName = projectName;
++        this.technologies = technologies;
++    }
++
++    @Override
++    public String toString() {
++        return "ProjectA{" +
++                "projectName='" + projectName + '\'' +
++                ", technologies='" + technologies.getDescription() + '\'' +
++                '}';
++    }
+ }
