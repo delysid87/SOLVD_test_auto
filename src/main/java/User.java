@@ -1,5 +1,3 @@
-package course.hw;
-
 public class User {
     public static void main(String[] args) {
         if (args.length < 3) {

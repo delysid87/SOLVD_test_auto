@@ -1,2 +1,49 @@
-package course.hm.project.it.company;public class Employee {
+package course.hm.project.it.company;
+
+import course.hm.project.it.company.interfaces.TeamMember;
+
+import java.util.Objects;
+
+abstract class Employee extends People implements TeamMember {
+    private static int employeeId;
+    private ProjectA projectA;
+
+    public Employee(String name, int employeeId, ProjectA projectA) {
+        super(name);
+        this.employeeId = employeeId;
+        this.projectA = projectA;
+    }
+
+    public static int getEmployeeId() {
+        return employeeId;
+    }
+
+    @Override
+    public void workOnProject() {
+        System.out.println(getName() + " is working on the project.");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return employeeId == employee.employeeId && Objects.equals(projectA, employee.projectA);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(employeeId, projectA);
+    }
+
+    public abstract ProjectA getProjectA();
 }
+
+
+
+
+
+
+
+
+

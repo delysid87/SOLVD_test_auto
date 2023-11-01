@@ -1,3 +1,5 @@
+package course.hm;
+
 public class Select001 {
 
 
@@ -18,9 +20,9 @@ public class Select001 {
                     min = j;
                 }
             }
-            int temp = array[i];
-            array[i] = array[min];
-            array[min] = temp;
+            int temp = array[min];
+            array[min] = array[i];
+            array[i] = temp;
         }
     }
 }
