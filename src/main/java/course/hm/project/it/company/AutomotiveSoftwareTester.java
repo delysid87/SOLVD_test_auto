@@ -15,7 +15,7 @@ public class AutomotiveSoftwareTester extends Employee implements Tester {
     }
 @Override
     public void runTests() {
-        System.out.println("Automotive Software Tester is running tests.");
+        System.out.println(getName() + " - Automotive Software Tester is running tests.");
     }
     @Override
     public void workOnProject() {
