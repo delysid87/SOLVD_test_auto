@@ -8,7 +8,6 @@ import course.hm.project.it.company.interfaces.Tester;
 public class Main {
     public static void main(String[] args) {
 
-        // Create employees
         AutomotiveSoftwareTester tester = new AutomotiveSoftwareTester("Michael", 1, new ProjectA("WEB App", Technologies.JAVA));
         SoftwareDeveloper developer = new SoftwareDeveloper("Ola", 2, new ProjectA("WEB App", Technologies.JAVA));
         ProjectManager projectManager = new ProjectManager("John", 3, "A", new ProjectA("App", Technologies.JAVA));
