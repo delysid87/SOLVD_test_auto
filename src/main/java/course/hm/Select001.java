@@ -20,9 +20,11 @@ public class Select001 {
                     min = j;
                 }
             }
-            int temp = array[min];
-            array[min] = array[i];
-            array[i] = temp;
+            if (min != i) {
+                int temp = array[min];
+                array[min] = array[i];
+                array[i] = temp;
+            }
         }
     }
 }
