@@ -1,19 +1,23 @@
 package course.hm.project.it.company;
 
+import course.hm.project.it.company.exceptions.UnauthorizedAccessException;
 import course.hm.project.it.company.interfaces.CEOActions;
 import course.hm.project.it.company.interfaces.TeamMember;
 
+import java.util.InputMismatchException;
 import java.util.Objects;
+import java.util.Scanner;
 
 public final class CEO extends People implements CEOActions, TeamMember {
-    private static final int sharePrice = 100;
-    private final String secretCode = "XYZ123";
+    private static final int SHARE_PRICE = 100;
+    private final int secretCode = 123;
 
-    public static void printSharePrice()  {
-        System.out.println("CEO's share price is " + sharePrice);
+    public static void printSharePrice() {
+        System.out.println("CEO's share price is " + SHARE_PRICE);
     }
 
     private static int totalCEOs = 0;
+
     static {
         totalCEOs++;
     }
@@ -24,12 +28,24 @@ public final class CEO extends People implements CEOActions, TeamMember {
         super(name);
         this.shares = shares;
     }
-    public final void revealSecretCode() {
-        System.out.println("The CEO's secret code is: " + secretCode);
+
+    public void revealSecretCode() {
+        if (isAuthorizedToAccessSecretCode()) {
+            System.out.println("The CEO's secret code is correct!");
+        } else {
+            try {
+                throw new UnauthorizedAccessException("Unauthorized access to the CEO's secret code.");
+            } catch (UnauthorizedAccessException e) {
+                System.err.println("Caught UnauthorizedAccessException: " + e.getMessage());
+            }
+
+        }
     }
+
     public int getShares() {
         return shares;
     }
+
     @Override
     public void workOnProject() {
         System.out.println(getName() + " is defining the company strategy.");
@@ -62,4 +78,19 @@ public final class CEO extends People implements CEOActions, TeamMember {
     public int hashCode() {
         return Objects.hash(shares);
     }
+
+    private boolean isAuthorizedToAccessSecretCode() {
+        try {
+            System.out.print("Enter the password to reveal the secret code: ");
+            Scanner scanner = new Scanner(System.in);
+
+            int enteredPassword = scanner.nextInt();
+
+            return enteredPassword == 123;
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid numeric password.");
+            return false; // lub inna odpowiednia logika dla błędnego wpisu
+        }
+    }
 }
+

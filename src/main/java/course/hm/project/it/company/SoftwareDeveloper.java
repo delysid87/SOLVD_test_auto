@@ -1,5 +1,6 @@
 package course.hm.project.it.company;
 
+import course.hm.project.it.company.exceptions.InvalidTechnologiesException;
 import course.hm.project.it.company.interfaces.Developer;
 
 import java.util.Objects;
@@ -22,10 +23,16 @@ public class SoftwareDeveloper extends Employee implements Developer {
 
 
     @Override
-    public void writeCode() {
+    public void writeCode() throws InvalidTechnologiesException {
+        if (!isValidTechnology(projectA.getTechnologies())) {
+            throw new InvalidTechnologiesException("Invalid technology for writing code: " + projectA.getTechnologies());
+        }
+
         System.out.println(getName() + " - Software Developer is writing code in " + projectA.getTechnologies());
     }
-
+    private boolean isValidTechnology(Technologies technology) {
+        return TechnologyValidator.isValidTechnology(technology);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

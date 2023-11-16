@@ -1,8 +1,10 @@
 package course.hm.project.it.company;
 
+import course.hm.project.it.company.interfaces.ManagerActions;
+
 import java.util.Objects;
 
-public class ProjectManager extends Manager {
+public class ProjectManager extends Manager implements ManagerActions {
 private ProjectA projectA;
 
     public ProjectManager(String name, int employeeId,String department, ProjectA projectA) {
@@ -25,6 +27,11 @@ private ProjectA projectA;
     @Override
     public void manageTeam() {
         System.out.println(getName() + " - Project Manager is managing the team.");
+    }
+
+    @Override
+    protected int getTeamSize() {
+        return 0;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package course.hm.project.it.company;
 
+import course.hm.project.it.company.exceptions.TestExecutionException;
 import course.hm.project.it.company.interfaces.Tester;
 
 import java.util.Objects;
@@ -17,10 +18,35 @@ public class AutomotiveSoftwareTester extends Employee implements Tester {
     public void runTests() {
         System.out.println(getName() + " - Automotive Software Tester is running tests.");
     }
+
+
     @Override
     public void workOnProject() {
-        System.out.println(getName() + " is running tests on the  " + getProjectA());
+        try {
+            if (getProjectA() != null) {
+                System.out.println(getName() + " is running tests on the  " + getProjectA());
+
+                if (testExecutionFails()) {
+                    throw new TestExecutionException("Test execution failed!!.");
+                }
+            } else {
+                throw new IllegalArgumentException(getName() + " is running tests on an undefined project.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.err.println("UndefinedProjectException caught: " + e.getMessage());
+
+        } catch (TestExecutionException e) {
+            System.out.println("TestExecutionException caught: " + e.getMessage());
+
+        }
     }
+
+    private boolean testExecutionFails() {
+
+        return true;
+    }
+
+
     @Override
     public ProjectA getProjectA() {
         return projectA;
@@ -42,8 +68,10 @@ public class AutomotiveSoftwareTester extends Employee implements Tester {
 
     @Override
     public String toString() {
-        return getName() +
-                " ,project= " + projectA +
+        return "AutomotiveSoftwareTester{" +
+                "name='" + getName() + '\'' +
+                ", employeeId=" + getEmployeeId() +
+                ", projectA='" + projectA + '\'' +
                 '}';
     }
 }

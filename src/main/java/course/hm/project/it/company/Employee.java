@@ -5,7 +5,7 @@ import course.hm.project.it.company.interfaces.TeamMember;
 import java.util.Objects;
 
 abstract class Employee extends People implements TeamMember {
-    private static int employeeId;
+    private int employeeId;
     private ProjectA projectA;
 
     public Employee(String name, int employeeId, ProjectA projectA) {
@@ -14,7 +14,7 @@ abstract class Employee extends People implements TeamMember {
         this.projectA = projectA;
     }
 
-    public static int getEmployeeId() {
+    public int getEmployeeId() {
         return employeeId;
     }
 

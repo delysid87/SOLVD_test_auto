@@ -1,5 +1,7 @@
 package course.hm.project.it.company;
 
+import course.hm.project.it.company.exceptions.InvalidNameException;
+
 public class People {
     private String name;
 
@@ -8,7 +10,18 @@ public class People {
     }
 
     public String getName() {
-        return name;
+        try {
+            if (!isValidName(name)) {
+                throw new InvalidNameException("Invalid name: " + name);
+            }
+            return name;
+        } catch (InvalidNameException e) {
+            System.err.println("Error: " + e.getMessage());
+            return ""; // lub inna odpowiednia logika dla błędnego imienia
+        }
+    }
+    private boolean isValidName(String name) {
+        return name != null && name.matches("^[a-zA-Z]+( [a-zA-Z]+)*$");
     }
 
     @Override

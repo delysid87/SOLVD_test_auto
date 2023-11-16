@@ -1,5 +1,5 @@
 package course.hm.project.it.company.interfaces;
 
-public interface Manager {
+public interface ManagerActions {
     void manageTeam();
 }

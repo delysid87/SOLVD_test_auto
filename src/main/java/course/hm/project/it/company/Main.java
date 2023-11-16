@@ -1,12 +1,15 @@
 package course.hm.project.it.company;
 
+import course.hm.project.it.company.exceptions.InvalidNameException;
+import course.hm.project.it.company.exceptions.InvalidTechnologiesException;
+import course.hm.project.it.company.exceptions.UnauthorizedAccessException;
 import course.hm.project.it.company.interfaces.CEOActions;
 import course.hm.project.it.company.interfaces.Developer;
 import course.hm.project.it.company.interfaces.TeamMember;
 import course.hm.project.it.company.interfaces.Tester;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
 
         AutomotiveSoftwareTester tester = new AutomotiveSoftwareTester("Michael", 1, new ProjectA("WEB App", Technologies.JAVA));
         SoftwareDeveloper developer = new SoftwareDeveloper("Ola", 2, new ProjectA("WEB App", Technologies.JAVA));
@@ -19,17 +22,15 @@ public class Main {
         System.out.println();
 
 
-        developer.writeCode();
+        try {
+            developer.writeCode();
+        } catch (InvalidTechnologiesException e) {
+            throw new RuntimeException(e);
+        }
         developer.workOnProject();
         System.out.println(developer);
         System.out.println();
-        boolean sameTechnologies = tester.getProjectA().equals(developer.getProjectA());
 
-        if (sameTechnologies) {
-            System.out.println("Employees: " + tester.getName() + " and " + developer.getName() + " work with the same project.");
-        } else {
-            System.out.println("Employees: " + tester.getName() + " and " + developer.getName() + " work with different projects.");
-        }
         System.out.println();
 
 
@@ -37,7 +38,6 @@ public class Main {
         projectManager.workOnProject();
         System.out.println(projectManager);
         System.out.println();
-
 
 
         ceo.workOnProject();
